@@ -7,6 +7,12 @@ I found that this lesson and application were the hardest so far. I think this i
 2)	What areas of the lesson/application confused or still confuses you?
 I am still confused on what is the best method to label a new column in a dataframe. I am also slightly confused on what is the simplest or most effective way to create parts of data, such as the bimnonthly values used in lesson 5.
 
+When you do this:
+myDataFrame$someColData = <some values>
+
+R will either:
+- add a column to the data frame called "someColData" if the column does not exist
+- overwrite the column named "someColData" if it already exists
 
 3)	What is a way you can apply the material in this lesson towards your research or area of study?
 The tips on data handling and plotting are super helpful for me in using large datasets and grabbing parts of the data to plot.
@@ -15,3 +21,4 @@ The tips on data handling and plotting are super helpful for me in using large d
 
 I would be interested in layering statistics like an ANOVA with then creating a histogram based on those results. 
 
+- I am not sure what you mean by "layering statistics" -- you can fairly easily plot a histogram of the residuals of an ANOVA. Lesson 3-4 in my Fundamentals of Programming with R class has an example of this in Base R that I can adapt to GGPlot. 
