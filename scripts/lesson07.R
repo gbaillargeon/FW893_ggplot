@@ -74,3 +74,83 @@ thePlot = ggplot(data=weatherData) +
        y = "Degrees (Fahrenheit)",
        fill = "Wind Speeds");   # changes the legend (fill) title
 plot(thePlot);
+
+### Part 6: Using facets along the y-axis
+thePlot = ggplot(data=weatherData) +
+  geom_boxplot(mapping=aes(x=windDir, y=changeMaxTemp),
+               na.rm=TRUE) +
+  theme_bw() +
+  scale_x_discrete(limits = c("North", "East", "South", "West")) +
+  facet_grid(facets=windSpeedLevel ~ .) + # facet in vertical direction
+  labs(title = "Change in Temperature vs. Wind Direction",
+       subtitle = "Lansing, Michigan: 2016",
+       x = "Wind Direction",
+       y = "Degrees (Fahrenheit)");
+plot(thePlot);
+
+### Part 7: Using facets along the x-axis
+thePlot = ggplot(data=weatherData) +
+  geom_boxplot(mapping=aes(x=windDir, y=changeMaxTemp),
+               na.rm=TRUE) +
+  theme_bw() +
+  scale_x_discrete(limits = c("North", "East", "South", "West")) +
+  facet_grid(facets=. ~ windSpeedLevel) + # facet in horizontal direction
+  labs(title = "Change in Temperature vs. Wind Direction",
+       subtitle = "Lansing, Michigan: 2016",
+       x = "Wind Direction",
+       y = "Degrees (Fahrenheit)");
+plot(thePlot);
+
+### Part 8: Ordering facets
+thePlot = ggplot(data=weatherData) +
+  geom_boxplot(mapping=aes(x=windDir, y=changeMaxTemp), na.rm=TRUE) +
+  theme_bw() +
+  scale_x_discrete(limits = c("North", "East", "South", "West")) +
+  facet_grid(facets= . ~ factor(windSpeedLevel,
+                                levels=c("Low", "Medium", "High"))) +
+  labs(title = "Change in Temperature vs. Wind Direction",
+       subtitle = "Lansing, Michigan: 2016",
+       x = "Wind Direction",
+       y = "Degrees (Fahrenheit)");
+plot(thePlot);
+
+### Part 10: Filling and coloring facets
+thePlot = ggplot(data=weatherData) +
+  geom_boxplot(mapping=aes(x=windDir, y=changeMaxTemp),
+               na.rm=TRUE,
+               color=c("blue", rep("black", 3), 
+                       "green", rep("black", 3), 
+                       "orange", rep("black", 3)),
+               fill=c(rep(NA, 8), rep("red", 3), NA)) +
+  theme_bw() +
+  scale_x_discrete(limits = c("North", "East", "South", "West")) +
+  facet_grid(facets=.~factor(windSpeedLevel,
+                             levels=c("Low", "Medium", "High"))) +
+  labs(title = "Change in Temperature vs. Wind Direction",
+       subtitle = "Lansing, Michigan: 2016",
+       x = "Wind Direction",
+       y = "Degrees (Fahrenheit)");
+plot(thePlot);
+
+### Part 11: Changing facet labels
+windLabels = c(Low = "Light Winds",
+               Medium = "Medium Winds",
+               High = "Strong Winds");
+
+thePlot = ggplot(data=weatherData) +
+  geom_boxplot(mapping=aes(x=windDir, y=changeMaxTemp),
+               na.rm=TRUE,
+               color=c("blue", rep("black", 3),
+                       "green", rep("black", 3),
+                       "orange", rep("black", 3)),
+               fill=c(rep(NA, 8), rep("red", 3), NA)) +
+  theme_bw() +
+  scale_x_discrete(limits = c("North", "East", "South", "West")) +
+  facet_grid(facets=.~factor(windSpeedLevel,
+                             levels=c("Low", "Medium", "High")),
+             labeller=as_labeller(windLabels)) +
+  labs(title = "Change in Temperature vs. Wind Direction",
+       subtitle = "Lansing, Michigan: 2016",
+       x = "Wind Direction",
+       y = "Degrees (Fahrenheit)");
+plot(thePlot);
