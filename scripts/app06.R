@@ -26,7 +26,7 @@ for(day in 1:nrow(weatherData)) # nrow(weatherData) = 366
   else if(weatherData$stnPressure[day] > stnPressureQuant[1] && 
           weatherData$stnPressure[day] <= stnPressureQuant[2]) 
   {
-    weatherData$pressureLevel[day] = "LOw";
+    weatherData$pressureLevel[day] = "Low";
   }
   else if(weatherData$stnPressure[day] > stnPressureQuant[2] &&
           weatherData$stnPressure[day] <= stnPressureQuant[3])
@@ -55,7 +55,6 @@ pressureFact = factor(weatherData$pressureLevel,
 #find outliers - 3 highest windSusSpeed
 #put wind speeds in order of highest to lowestest speed
 highWindSusSpeed = order(weatherData$windSusSpeed, decreasing = TRUE);
-highWindSusSpeed = weatherData$highWindSusSpeed;
 topSpeeds = weatherData$windSusSpeed[highWindSusSpeed[1:3]];
 topDates = weatherData$date[highWindSusSpeed[1:3]];
 
@@ -67,7 +66,7 @@ thePlot = ggplot(data=weatherData) +
                outlier.color = "red",
                outlier.alpha = 0.6, 
                outlier.size = 3 ) +
-  annotate(geom="text", x=1, y=-topSpeeds[1], color="darkorange",label=topDates[1])+
+  annotate(geom="text", x=1, y=topSpeeds[1], color="darkorange",label=topDates[1])+
   annotate(geom="text", x=1.5, color = "blue", y=topSpeeds[2], label=topDates[2])+
   annotate(geom="text", x=2, color="black",  y=topSpeeds[3], label=topDates[3])+
   theme_bw() +
