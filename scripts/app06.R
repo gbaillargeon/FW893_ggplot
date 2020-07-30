@@ -67,8 +67,8 @@ thePlot = ggplot(data=weatherData) +
                outlier.alpha = 0.6, 
                outlier.size = 3 ) +
   annotate(geom="text", x=1, y=topSpeeds[1], color="darkorange",label=topDates[1])+
-  annotate(geom="text", x=1.5, color = "blue", y=topSpeeds[2], label=topDates[2])+
-  annotate(geom="text", x=2, color="black",  y=topSpeeds[3], label=topDates[3])+
+  annotate(geom="text", x=1, color = "blue", y=topSpeeds[2], label=topDates[2])+
+  annotate(geom="text", x=1, color="black",  y=topSpeeds[3], label=topDates[3])+
   theme_bw() +
   labs(title = "Wind Speed v. Pressure Level",
        subtitle = "Lansing, Michigan: 2016",
