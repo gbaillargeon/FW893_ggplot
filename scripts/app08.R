@@ -43,10 +43,10 @@ plot(thePlot);
   
 #combine heat and cool days in one bar plot
   thePlot = ggplot(data=weatherData) +
-    geom_col(mapping=aes(x=month, y=coolDays, fill="blue"), 
-             width=0.4) +
-    geom_col(mapping=aes(x=month, y=heatDays, fill="red"), 
-             width=0.4) +
+    geom_col(mapping=aes(x=month, y=coolDays), 
+             width=0.4, fill = "red") +
+    geom_col(mapping=aes(x=month, y=heatDays), 
+             width=0.4, fill="blue") +
     theme_bw() +
     labs(title = "Heating and Cooling Days",
          subtitle = "Lansing, Michigan: 2016",
