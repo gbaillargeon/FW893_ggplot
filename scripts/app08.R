@@ -11,6 +11,7 @@ weatherData$month = months;
 thePlot = ggplot(data=weatherData) +
   geom_col(mapping=aes(x=month, y=coolDays, fill=wType), 
            width=0.6) +
+  scale_x_discrete(limits = month.abb)+
   scale_fill_manual(values = c("green", "purple", "lightblue", 
                                "pink", "yellow","orange", "brown", "cyan"))+
   theme_bw() +
@@ -47,6 +48,7 @@ plot(thePlot);
              width=0.4, fill = "red") +
     geom_col(mapping=aes(x=month, y=heatDays), 
              width=0.4, fill="blue") +
+    scale_x_discrete(limits = month.abb)+
     theme_bw() +
     labs(title = "Heating and Cooling Days",
          subtitle = "Lansing, Michigan: 2016",
