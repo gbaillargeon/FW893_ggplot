@@ -36,7 +36,7 @@
          y = "Humidity");
   plot(plot1);
   
-  # Get the y values
+  # Get data for boxplot
   y = weatherData$relHum[weatherData$precipitation==0]; 
   y2 = weatherData$relHum[weatherData$precipitation==1];
   
@@ -56,30 +56,28 @@
   y2_25= quantile(y, probs = .25);
   y2_75 = quantile(y, probs=.75);
   
-  # interquartile range -- the size of the box and used to find whiskers
+  # interquartile range 
   IQR = y75 - y25;
   IQR2 = y2_75 - y2_25;
   
-  # Find the low and high point of the whiskers (beyond are outliers)
-  whiskerHighTemp = y75 + 1.5*IQR;   # 1.5 is default multiplier used in GGPlot
+  # Find the low and high point of the whiskers 
+  whiskerHighTemp = y75 + 1.5*IQR;   
   whiskerLowTemp = y25 - 1.5*IQR;
   
   whisker2HighTemp = y75 + 1.5*IQR2;  
   whisker2LowTemp = y25 - 1.5*IQR2;
-  
-  # The high and low whisker points are the closest values to the whisker ends that  
-  # do not go beyond the whisker ends.  
-  yHigh = y[y > y75 & y <= whiskerHighTemp]; # y such that y is between 3/4 and high whisker point
-  whiskerHigh = max(yHigh);                  # maximum of these values (becomes the high whisker point)
-  yLow = y[y >= whiskerLowTemp & y < y25];   # y such that y is between low whisker point and 1/4
-  whiskerLow = min(yLow);                    # minimum of these values (becomes the low whisker point)
+  .  
+  yHigh = y[y > y75 & y <= whiskerHighTemp];
+  whiskerHigh = max(yHigh);                  
+  yLow = y[y >= whiskerLowTemp & y < y25];   
+  whiskerLow = min(yLow);                    
   
   y2High = y2[y2 > y2_75 & y2 <= whisker2HighTemp];
   whisker2High = max(y2High);                  
   y2Low = y2[y2 >= whisker2LowTemp & y2 < y2_25];   
   whisker2Low = min(y2Low); 
   
-  ##### Manually plot humidity vs precipitation ######
+  #plotting humidity and precipitation
   plot2 = ggplot() +
     theme_bw() +
     
@@ -115,7 +113,7 @@
              x = 1, xend=1,
              y = y75, yend=whiskerHigh) +  
     annotate(geom="segment",
-             x = 1, xend=1,
+             x = 2, xend=3,
              y = y2_75, yend=whisker2High) +
     
     #low whisker
@@ -123,7 +121,7 @@
              x = 1, xend=1,
              y = y25, yend=whiskerLow) + 
     annotate(geom="segment",
-             x = 1, xend=1,
+             x = 2, xend=1,
              y = y2_25, yend=whisker2Low) + 
     
     # mean line
@@ -136,16 +134,16 @@
              y=y2Mean, yend=y2Mean,   
              color = "blue") +
     
-    # SD text
+    # SD
     annotate(geom="text",
              x = 1,
              y = c(yMean+ySD, yMean-ySD),
-             label = "1 SD",
+             label = "ySD",
              color = "blue")+
   annotate(geom="text",
-           x = 1,
+           x = 2,
            y = c(y2Mean+y2SD, y2Mean-yS2D),
-           label = "1 SD",
+           label = "y2SD",
            color = "blue");
   
   plot(plot2);

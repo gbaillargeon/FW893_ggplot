@@ -16,20 +16,23 @@ for(i in 1:nrow(weatherData))
 }
 
 weatherData$precipVal = as.numeric(weatherData$precipVal)
-
+avgTemp=weatherData$avgTemp
+medTemps=c()
+hotTemps=c()
+coldTemps=c()
 for(i in 1:nrow(weatherData))
 {
   if(avgTemp <= 55)
   {
-    medTemps=c();
+    avgTemp=medTemps;
   }
   if(avgTemp > 55 && avgTemp<76)
   { 
-     hotTemps=C();
+     avgTemp=coldTemps;
   }
   else
   {
-    coldTemps=c();
+    avgTemp=hotTemps;
   }
 }
 
